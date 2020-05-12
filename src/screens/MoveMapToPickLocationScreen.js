@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   downView: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#ccc",
+    backgroundColor: "green",
   },
 });
 
