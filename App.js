@@ -1,63 +1,14 @@
-import React, { useState } from 'react';
-import {View, StyleSheet, Text, Image, SafeAreaView} from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import MapNavigator from './src/navigation/mapNavigation';
 
 const App = () => {
 
-  const [ region, setRegion ] = useState({
-    latitude: 29.970351,
-    longitude: 31.256608,
-    latitudeDelta: 0.001,
-    longitudeDelta: 0.001
-  });
-
-  const onRegionChange = region => {
-    setRegion(region);
-  }
-
   return (
-    <View style={styles.map}>
-      <MapView
-        style={styles.map}
-        initialRegion={region}
-        onRegionChangeComplete={onRegionChange}
-      />
-      <View style={styles.markerFixed}>
-        <Image style={styles.marker} source={require('./src/assets/marker.png')} />
-      </View>
-      <SafeAreaView style={styles.footer}>
-        <Text style={styles.region}>{JSON.stringify(region, null, 2)}</Text>
-      </SafeAreaView>
-    </View>
+    <NavigationContainer>
+      <MapNavigator />
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  map: {
-    flex: 1
-  },
-  markerFixed: {
-    left: '50%',
-    marginLeft: -24,
-    marginTop: -48,
-    position: 'absolute',
-    top: '50%'
-  },
-  marker: {
-    height: 48,
-    width: 48
-  },
-  footer: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    bottom: 0,
-    position: 'absolute',
-    width: '100%'
-  },
-  region: {
-    color: '#fff',
-    lineHeight: 20,
-    margin: 20
-  }
-});
 
 export default App;
